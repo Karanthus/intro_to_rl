@@ -13,19 +13,20 @@ public class PlayerAgent : Agent
 
     public GameObject Enemy_Bullets;
     public List<GameObject> activeBullets = new List<GameObject>();
-    public GameObject CP0;
-    public GameObject CP1;
-    public GameObject CP2;
+    
+    
+    //public GameObject CP0;
+    //public GameObject CP1;
+    //public GameObject CP2;
 
     private Rigidbody rb;
 
-    
 
     private float boundXLeft = 12.9f;
     private float boundXRight = -76f;
     //private float boundZBackward = -22f;
 
-    public bool isAtWall = false;
+    public bool isAtWall = false; //Unused atm
 
 
 
@@ -45,34 +46,15 @@ public class PlayerAgent : Agent
     {
         rb = GetComponent<Rigidbody>();
         
-        CP0 = GameObject.Find("CP0");
-        
-
-
-        CP1 = GameObject.Find("CP1"); // Replace "MyObject" with your object's name or use other methods to find it
-
-        // Store the initial position and rotation of the object
-
-
-
-        CP2 = GameObject.Find("CP2"); // Replace "MyObject" with your object's name or use other methods to find it
-
-        // Store the initial position and rotation of the object
-        
-
+        //CP0 = GameObject.Find("CP0");
+        //CP1 = GameObject.Find("CP1");
+        //CP2 = GameObject.Find("CP2");
     }
     void ReactivateObject()
     {
-
-        CP0.SetActive(true);
-        
-        CP1.SetActive(true); // Reactivate the object
-        // Reset its position and rotation to initial values
-
-        CP2.SetActive(true); // Reactivate the object
-        // Reset its position and rotation to initial values
-
-        Debug.Log("New Episode");
+        //CP0.SetActive(true);
+        //CP1.SetActive(true); // Reactivate the object
+        //CP2.SetActive(true);
     }
     public void DestroyAllBullets()
     {
@@ -91,7 +73,7 @@ public class PlayerAgent : Agent
     {
         DestroyAllBullets();
         transform.localPosition = new Vector3(-22.5f, 1.519f, -31.6f); //startingPosition;
-        // Reset the agent's position, enemy positions, etc. for a new episode
+        // Reset the agent's position for a new episode
         
         
     }
@@ -160,36 +142,13 @@ public class PlayerAgent : Agent
         if (other.tag == "EnemyProjectile")
         {
             AddReward(-1f); // Negative reward for getting hit by an enemy projectile
-            
-            
-            var parent = Enemy_Bullets.transform;
-            int numberOfChildren = parent.childCount;
-
-            for (int i = 0; i < numberOfChildren; i++)
-            {
-                if (parent.GetChild(i).tag == "Enemy_Projectile")
-                {
-                    Destroy(parent.GetChild(i).gameObject);
-                }
-            }
             Debug.Log("HIT");
             EndEpisode();
         }
         if (other.tag == "Finish")
         {
             AddReward(1f);
-            
             Debug.Log("Reached FINISH");
-            /*var parent = Enemy_Bullets.transform;
-            int numberOfChildren = parent.childCount;
-
-            for (int i = 0; i < numberOfChildren; i++)
-            {
-                if (parent.GetChild(i).tag == "Enemy_Projectile")
-                {
-                    Destroy(parent.GetChild(i).gameObject);
-                }
-            }*/
             EndEpisode();
         }
         if (other.tag == "CP")
@@ -209,7 +168,7 @@ public class PlayerAgent : Agent
     }
     private void OnCollisionExit(Collision collision)
     {
-        isAtWall = false;
+        isAtWall = false; //Unused atm
     }
     private void OnCollisionStay(Collision collision)
     {

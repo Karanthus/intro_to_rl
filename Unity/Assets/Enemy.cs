@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public GameObject enemyProjectile; // Reference to the enemy projectile prefab
     public float minInterval = 1f; // Minimum time between shots
     public float maxInterval = 3f; // Maximum time between shots
-    public float projectileSpeed = 20f; // Initial speed of the projectile
+    public float projectileSpeed = 10f; // Initial speed of the projectile
     public float projectileLifetime = 5f; // Time before the projectile disappears
 
     
@@ -24,14 +24,14 @@ public class Enemy : MonoBehaviour
             Vector3 forwardDirection = transform.forward;
 
             // Calculate the spawn position in the forward direction
-            Vector3 spawnPosition = transform.position + forwardDirection * 1.0f; // Adjust the distance if needed
+            Vector3 spawnPosition = transform.position + forwardDirection * 1.0f;
 
             // Instantiate the enemy's projectile at the calculated position and facing forward
             GameObject newProjectile = Instantiate(enemyProjectile, spawnPosition, Quaternion.LookRotation(forwardDirection));
 
             playerAgent.RegisterBullet(newProjectile);
 
-            // Access the projectile's Rigidbody (assuming the projectile has a Rigidbody component)
+            // Access the projectile's Rigidbody
             Rigidbody projectileRb = newProjectile.GetComponent<Rigidbody>();
             if (projectileRb != null)
             {

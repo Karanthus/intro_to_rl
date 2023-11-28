@@ -23,12 +23,12 @@ public class Front_enemy : MonoBehaviour
             Vector3 forwardDirection = transform.forward;
 
             // Calculate the spawn position in the forward direction
-            Vector3 spawnPosition = transform.position + forwardDirection * 1.0f; // Adjust the distance if needed
+            Vector3 spawnPosition = transform.position + forwardDirection * 1.0f;
 
             // Instantiate the enemy's projectile at the calculated position and facing forward
             GameObject newProjectile = Instantiate(enemyProjectile, spawnPosition, Quaternion.LookRotation(forwardDirection));
             agent.RegisterBullet(newProjectile);
-            // Access the projectile's Rigidbody (assuming the projectile has a Rigidbody component)
+            // Access the projectile's Rigidbody
             Rigidbody projectileRb = newProjectile.GetComponent<Rigidbody>();
             if (projectileRb != null)
             {
